@@ -1,9 +1,65 @@
 // module gameboard
+let gameboard = [{  
+        x: 0, 
+        y: 0,
+        value: ''      
+    },{
+        x: 1,
+        y: 0,
+        value: ''
+    },{
+        x: 2,
+        y:0,
+        value: ''
+    },{
+        x: 0,
+        y: 1,
+        value: ''
+    },{
+        x: 1,
+        y: 1,
+        value: ''
+    },{
+        x: 2,
+        y: 1,
+        value: ''
+    },{
+        x: 0,
+        y: 2,
+        value: ''
+    },{
+        x: 1,
+        y: 2,
+        value: ''
+    },{
+        x: 2,
+        y: 2,
+        value: ''
+    }
+
+];
 // - blanks, frame
+console.log(gameboard[2])
+
+// if all 
 
 
+const playerFactory = (name) => {
+    let score = 0;
+    let turn = false;
+    let move = (turn) => {
+        if (turn === true) {
+            console.log('hmmm') // alter game board
+        }
+    }
+    return { name, score, move };
+};
 
-const gameflow = (() => {
+const player1 = playerFactory('Alice')
+const player2 = playerFactory('Bob')
+
+
+const gameflow = ((player1, player2) => {
     
     // Initialize game. 
     const gamestart = () => {
@@ -15,6 +71,7 @@ const gameflow = (() => {
         }
     }
 
+    const aTurn = (player1, player2, gameboard)
     const newTurn = (player1, player2, gameboard) => {
         const winnerCheck = (gameboard) => {
             if (false) {
@@ -36,20 +93,3 @@ const gameflow = (() => {
 
     
 })();
-
-
-const playerFactory = (name) => {
-    let score = 0;
-    let turn = false;
-    let move = (turn) => {
-        if (turn === true) {
-            console.log('hmmm') // alter game board
-        }
-    }
-    return { name, score, move };
-};
-
-const player1 = playerFactory('Alice')
-const player2 = playerFactory('Bob')
-
-gameflow
