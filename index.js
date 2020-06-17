@@ -41,41 +41,23 @@ let gameboard = [{
 // - blanks, frame
 console.log(gameboard[2])
 
-function linecheck() {
-    let line = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-    for (let i = 0; i < line.length; i++) {
-        let check = []
-        for (let j = 0; j < 3; j++) {
-            if (diag[i][j] != null) {
-                check.push(diag[i][j])
-            }
-        }
-        if (check[0] === check[1] === check[2]) {
-            winner(latestplayer)
-        }
-    }
-}
-
-
+// player templates
 const playerFactory = (name) => {
     let score = 0;
     let turn = false;
-    let move = (turn) => {
-        if (turn === true) {
-            console.log('hmmm') // alter game board
-        }
-    }
-    return { name, score, move };
+    return { name, score, turn };
 };
 
+// create two players
 const player1 = playerFactory('Alice')
 const player2 = playerFactory('Bob')
 
 
-const gameflow = ((player1, player2) => {
+const gameflow = ((player1, player2, gameboard) => {
     
     // Initialize game. 
     const gamestart = () => {
+        console.log('gamestart')
         let x = Math.random();
         if (x < 0.5) {
             player1.turn = true;
@@ -84,8 +66,39 @@ const gameflow = ((player1, player2) => {
         }
     }
 
-    const aTurn = (player1, player2, gameboard)
+    function tie() {
+        alert("it's a tie!")
+    }
+
+    function winner(player) {
+        alert(player + " wins!")
+    }
+
+    // see if there's a winner
+    const linecheck = (gameboard) => {
+        console.log('linecheck')
+        let line = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+        let totalFilled = 0;
+        for (let i = 0; i < line.length; i++) {
+            let check = []
+            for (let j = 0; j < 3; j++) {
+                if (gameboard[i][j].value != null) {
+                    check.push(gameboard[i][j].value)
+                    totalFilled++;
+                }
+            }
+            if (check[0] === check[1] === check[2]) {
+                winner(latestplayer);
+            }
+        }
+        if (totalFilled === 24) {
+            tie();
+        }
+    }
+
+    // turn control over to other player
     const newTurn = (player1, player2, gameboard) => {
+        console.log('newTurn')
         const winnerCheck = (gameboard) => {
             if (false) {
                 // see if player1 has won
@@ -104,5 +117,15 @@ const gameflow = ((player1, player2) => {
         }
     }
 
-    
+    // player turn
+    const turn = (player1, player2, gameboard) => {
+        console.log('turn')
+        // playmove
+        linecheck;
+        newTurn;
+    }
+    return {gamestart, turn}
 })();
+
+gameflow.gamestart;
+gameflow.turn;

@@ -1,9 +1,19 @@
+#gameboard {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.playercard {
+    display: table;
+    margin: 100px auto;
+}
+    
 #gamegrid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     height: 400px;
     width: 400px;
-    margin: 100px auto;
+    margin: 50px auto;
 }
 
 p {
