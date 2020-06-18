@@ -102,15 +102,6 @@ const gameflow = (function(player1, player2, gameboard){
     // turn control over to other player
     const newTurn = () => {
         console.log('newTurn')
-        const winnerCheck = (gameboard) => {
-            if (false) {
-                // see if player1 has won
-                return
-            } else if (false) {
-                // see if player2 has won. 
-                return
-            } 
-        }
         if (player1.turn === true) {
             player1.turn = false;
             player2.turn = true;
