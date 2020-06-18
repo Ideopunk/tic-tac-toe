@@ -36,7 +36,6 @@ let gameboard = [{
         y: 2,
         value: ''
     }
-
 ];
 // - blanks, frame
 console.log(gameboard[2])
@@ -52,12 +51,16 @@ const playerFactory = (name) => {
 const player1 = playerFactory('Alice')
 const player2 = playerFactory('Bob')
 
+console.log(player1.name)
+console.log(player1.score)
+console.log(player1.turn)
 
-const gameflow = ((player1, player2, gameboard) => {
+const gameflow = (function(player1, player2, gameboard){
     
     // Initialize game. 
     const gamestart = () => {
         console.log('gamestart')
+        console.log(player1, player2)
         let x = Math.random();
         if (x < 0.5) {
             player1.turn = true;
@@ -75,7 +78,7 @@ const gameflow = ((player1, player2, gameboard) => {
     }
 
     // see if there's a winner
-    const linecheck = (gameboard) => {
+    const linecheck = () => {
         console.log('linecheck')
         let line = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
         let totalFilled = 0;
@@ -97,7 +100,7 @@ const gameflow = ((player1, player2, gameboard) => {
     }
 
     // turn control over to other player
-    const newTurn = (player1, player2, gameboard) => {
+    const newTurn = () => {
         console.log('newTurn')
         const winnerCheck = (gameboard) => {
             if (false) {
@@ -118,14 +121,15 @@ const gameflow = ((player1, player2, gameboard) => {
     }
 
     // player turn
-    const turn = (player1, player2, gameboard) => {
+    const turn = () => {
         console.log('turn')
+        console.log(player1, player2, gameboard)
         // playmove
         linecheck;
-        newTurn;
+        newTurn(player1, player2, gameboard);
     }
     return {gamestart, turn}
-})();
+})(player1, player2, gameboard);
 
-gameflow.gamestart;
-gameflow.turn;
+gameflow.gamestart();
+gameflow.turn();
