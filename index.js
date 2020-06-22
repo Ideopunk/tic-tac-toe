@@ -39,7 +39,6 @@ const gameflow = (function(player1, player2, gameboard){
         for (let i = 0; i < gameboard.length; i++) {
             gameboard[i].value = ''
             let cell = document.querySelector(`#${gameboard[i].id}`)
-            console.log("cell: ")
             console.log(cell.textContent)
             cell.textContent = ''
         }
@@ -52,6 +51,7 @@ const gameflow = (function(player1, player2, gameboard){
 
     function winner(player) {
         alert(player.name + " wins!")
+        player.score++;
         gameend()
     }
 
@@ -59,8 +59,12 @@ const gameflow = (function(player1, player2, gameboard){
     const linecheck = () => {
         let line = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
         let totalFilled = 0;
+
+        // go through each line to check for win condition
         for (let i = 0; i < line.length; i++) {
             let check = []
+
+            // go through each cell in line to see if filled
             for (let j = 0; j < 3; j++) {
                 let currCell = line[i][j]
                 if (gameboard[currCell].value != '') {
@@ -68,9 +72,9 @@ const gameflow = (function(player1, player2, gameboard){
                     totalFilled++;
                 }
             }
-            console.log("check" + check)
+
+            // if they're all filled and all the same, game is over
             if (check[0] !== undefined && check[0] === check[1] && check[0] === check[2]) {
-                console.log("check[0]: " + check[0])
                 if (player1.turn === true) {
                     winner(player1)
                     console.log('winner player 1')
@@ -81,7 +85,7 @@ const gameflow = (function(player1, player2, gameboard){
             }
         }
 
-        //this works
+        // if checked so many times and not done, board is full
         if (totalFilled === 24) {
             tie();
         }
@@ -96,14 +100,15 @@ const gameflow = (function(player1, player2, gameboard){
         }
 
         // choose symbol based on player
-        let symbol = ''
+        let symbol = '';
         if (player1.turn === true) {
             symbol = player1.symb
-            cell.textContent = symbol;
         } else {
             symbol = player2.symb
-            cell.textContent = symbol;
         }
+
+        // fill in cell
+        cell.textContent = symbol;
         
         // update gameboard array too
         for (let i = 0; i < gameboard.length; i++) {
