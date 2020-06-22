@@ -49,17 +49,21 @@ const gameflow = (function(player1, player2, gameboard){
         for (let i = 0; i < line.length; i++) {
             let check = []
             for (let j = 0; j < 3; j++) {
-                console.log(line[i][j])
                 let currCell = line[i][j]
                 if (gameboard[currCell].value != '') {
                     check[j] = (gameboard[currCell].value)
-                    console.log("wasn't null")
                     totalFilled++;
                 }
             }
             console.log("check" + check)
-            if (check[0] === check[1] === check[2]) {
-                winner(latestplayer);
+            if (check[0] !== undefined && check[0] === check[1] && check[0] === check[2]) {
+                console.log("check[0]: " + check[0])
+                if (player1.turn === true) {
+                    console.log('winner player 1')
+                } else {
+                    console.log('winner player 2')
+                }
+                // winner(latestplayer);
             }
         }
 
