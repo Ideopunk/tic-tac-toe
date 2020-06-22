@@ -34,12 +34,25 @@ const gameflow = (function(player1, player2, gameboard){
         }
     }
 
+    const gameend = () => {
+        console.log('gameend')
+        for (let i = 0; i < gameboard.length; i++) {
+            gameboard[i].value = ''
+            let cell = document.querySelector(`#${gameboard[i].id}`)
+            console.log("cell: ")
+            console.log(cell.textContent)
+            cell.textContent = ''
+        }
+    }
+
     function tie() {
         alert("it's a tie!")
+        gameend()
     }
 
     function winner(player) {
-        alert(player + " wins!")
+        alert(player.name + " wins!")
+        gameend()
     }
 
     // see if there's a winner
@@ -59,11 +72,12 @@ const gameflow = (function(player1, player2, gameboard){
             if (check[0] !== undefined && check[0] === check[1] && check[0] === check[2]) {
                 console.log("check[0]: " + check[0])
                 if (player1.turn === true) {
+                    winner(player1)
                     console.log('winner player 1')
                 } else {
+                    winner(player2)
                     console.log('winner player 2')
                 }
-                // winner(latestplayer);
             }
         }
 
