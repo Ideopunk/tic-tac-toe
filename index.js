@@ -38,6 +38,13 @@ const gameflow = (function(player1, player2, gameboard){
 
     // Initialize game. 
     const gamestart = () => {
+        let replacebutton = document.createElement('button')
+        replacebutton.textContent = "Restart";
+        replacebutton.id = "startbutton"
+        replacebutton.addEventListener('click', () => {
+            restart()
+        })
+        startButton.parentNode.replaceChild(replacebutton, startButton)
         let bottoms = document.querySelectorAll('.bottom')
         bottoms.forEach(x => {
             x.style["border-top-color"] = 'black';
@@ -80,9 +87,12 @@ const gameflow = (function(player1, player2, gameboard){
         for (let i = 0; i < gameboard.length; i++) {
             gameboard[i].value = ''
             let cell = document.querySelector(`#${gameboard[i].id}`)
-            console.log(cell.textContent)
             cell.textContent = ''
         }
+    }
+
+    function restart() {
+        gameend();
     }
 
     function tie() {
