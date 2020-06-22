@@ -25,7 +25,7 @@ const player2 = playerFactory('Bob', 'O')
 
 // all the things that happen in the game
 const gameflow = (function(player1, player2, gameboard){
-    const messageBox = document.querySelectorAll('#messageBox')
+    const messageBox = document.querySelector('#messageBox')
 
     function setName(name, player) {
         if (name.value !== '') {
@@ -101,9 +101,10 @@ const gameflow = (function(player1, player2, gameboard){
     }
 
     function winner(player) {
-        alert(player.name + " wins!")
+        messageBox.textContent = player.name + " wins!"
+        console.log(messageBox.parentNode)
         player.score++;
-        gameend()
+        gameend();
     }
 
     // see if there's a winner
@@ -172,6 +173,7 @@ const gameflow = (function(player1, player2, gameboard){
 
     // create dom-interaction
     const gameMove = (player, lastPlayer) => {
+        messageBox.textContent = player.name + "'s turn"
         let a = player.symb;
         let lastA = lastPlayer.symb;
         let ttts = document.querySelectorAll(".cell")
