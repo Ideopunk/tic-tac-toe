@@ -17,23 +17,35 @@ const playerFactory = (name, symb) => {
     return { name, score, turn, symb };
 };
 
-// create two players
+// const player1 = playerFactory(prompt("First player name?"), 'X')
+// const player2 = playerFactory(prompt("Second player name?"), 'O')
+
 const player1 = playerFactory('Alice', 'X')
 const player2 = playerFactory('Bob', 'O')
 
 // all the things that happen in the game
 const gameflow = (function(player1, player2, gameboard){
     
+
     // Initialize game. 
     const gamestart = () => {
+        let bottoms = document.querySelectorAll('.bottom')
+        bottoms.forEach(bottom => {
+            console.log(bottom)
+            bottom.setAttribute("border-top-color", "black");
+        })
+
+
         let x = Math.random();
         if (x < 0.5) {
             player1.turn = true;
         } else {
             player2.turn = true;
         }
+        turn();
     }
 
+    // game is over, wipe the board
     const gameend = () => {
         console.log('gameend')
         for (let i = 0; i < gameboard.length; i++) {
@@ -149,8 +161,11 @@ const gameflow = (function(player1, player2, gameboard){
         linecheck();
         newTurn(player1, player2, gameboard);
     }
-    return {gamestart, turn}
+    return {gamestart, player1, player2}
 })(player1, player2, gameboard);
 
-gameflow.gamestart();
-gameflow.turn();
+// start button
+let startButton = document.querySelector('#startbutton')
+startButton.addEventListener('click', () => {
+    gameflow.gamestart();
+})

@@ -34,17 +34,36 @@ p {
 }
 
 .top {
-    border-bottom: 2px solid black;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;;
+    border-bottom-color: grey;
 }
 
 .bottom {
-    border-top: 2px solid black;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: grey;
 }
 
 .left {
-    border-right: 2px solid black;
+    border-right-width: 2px;
+    border-right-style: solid;
+    border-right-color: grey;
 }
 
 .right {
-    border-left: 2px solid black;
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: grey;
+}
+
+#startbutton {
+    position: absolute;
+    bottom: 20px;
+    left: 48%;
+    border: 0px solid white;
+    border-radius: 40%;
+    background-color: aqua;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
 }
