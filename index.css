@@ -59,6 +59,7 @@ p {
 
 .score {
     display: table-row;
+    visibility: hidden;
 }
 
 #messageBox {

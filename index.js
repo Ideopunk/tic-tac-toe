@@ -38,6 +38,7 @@ const gameflow = (function(player1, player2, gameboard){
 
     // Initialize game. 
     const gamestart = () => {
+        // turn start button into create button
         let replacebutton = document.createElement('button')
         replacebutton.textContent = "Restart";
         replacebutton.id = "startbutton"
@@ -45,6 +46,15 @@ const gameflow = (function(player1, player2, gameboard){
             restart()
         })
         startButton.parentNode.replaceChild(replacebutton, startButton)
+
+        // make score visible
+        let scores = document.querySelectorAll('.score')
+        scores.forEach(score => {
+            score.style['visibility'] = 'visible';
+        })
+
+
+        // Color in grid
         let bottoms = document.querySelectorAll('.bottom')
         bottoms.forEach(x => {
             x.style["border-top-color"] = 'black';
@@ -71,7 +81,7 @@ const gameflow = (function(player1, player2, gameboard){
         setName(firstname, player1)
         setName(secondname, player2)
 
-
+        // Choose starting player
         let x = Math.random();
         if (x < 0.5) {
             player1.turn = true;
@@ -105,7 +115,7 @@ const gameflow = (function(player1, player2, gameboard){
         console.log(messageBox.parentNode)
         player.score++;
         let score = document.querySelectorAll('.score')
-        score[num].textContent = player.score;
+        score[num].textContent = "Score: " + player.score;
         gameend();
     }
 
