@@ -68,17 +68,19 @@ p {
     visibility: hidden;
 }
 
+#bottombuttons {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    justify-items: stretch;
+}
+
 #messageBox {
-    position: absolute;
-    bottom: 5px;
     left: 40%;
     font-size: 20px;
 }
 
 #startbutton {
-    position: absolute;
-    bottom: 20px;
-    left: 60%;
     border: 0px solid white;
     border-radius: 40%;
     background-color: aqua;
