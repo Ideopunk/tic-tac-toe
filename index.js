@@ -1,5 +1,14 @@
 // module gameboard
-let gameboard = ['', '', '', '', '', '', '', '', ''];
+let gameboard = []
+let positions = ['tl', 'tm', 'tr', 'cl', 'cm', 'cr', 'bl', 'bm', 'br']
+
+for (let i = 0; i < positions.length; i++) {
+    gameboard.push({
+        value: '',
+        id: positions[i]
+    })
+}
+console.log(gameboard)
 
 
 // player templates
@@ -10,8 +19,8 @@ const playerFactory = (name, symb) => {
 };
 
 // create two players
-const player1 = playerFactory('Alice', 'x')
-const player2 = playerFactory('Bob', 'o')
+const player1 = playerFactory('Alice', 'X')
+const player2 = playerFactory('Bob', 'O')
 
 // all the things that happen in the game
 const gameflow = (function(player1, player2, gameboard){
@@ -38,6 +47,7 @@ const gameflow = (function(player1, player2, gameboard){
         alert(player + " wins!")
     }
 
+    // this needs revision
     // see if there's a winner
     // const linecheck = () => {
     //     console.log('linecheck')
@@ -61,29 +71,47 @@ const gameflow = (function(player1, player2, gameboard){
     //     }
     // }
 
-    const gameMove = (player) => {
+    const boardUpdate = function(event) {
+        let cell = event.path[0]
+        let symbol = ''
+        if (player1.turn === true) {
+            symbol = player1.symb
+            cell.textContent = symbol;
+        } else {
+            symbol = player2.symb
+            cell.textContent = symbol;
+        }
+        for (let i = 0; i < gameboard.length; i++) {
+            if (gameboard[i].id === cell.id) {
+                gameboard[i].value = symbol;
+            }
+        }
+        newTurn();        
+    }
+
+    // create dom-interaction
+    const gameMove = (player, lastPlayer) => {
         let a = player.symb;
+        let lastA = lastPlayer.symb;
         let ttts = document.querySelectorAll(".cell")
         ttts.forEach(ttt => {
-            // remove old event listeners?
-            ttt.addEventListener('click', () => {
-                console.log(ttt.childNodes)
-                // 
-            })
+            ttt.removeEventListener('click', boardUpdate);
+            ttt.addEventListener('click', boardUpdate);
         })
     }
 
     // turn control over to other player
     const newTurn = () => {
+        // linecheck()
         console.log('newTurn')
         if (player1.turn === true) {
             player1.turn = false;
             player2.turn = true;
-            gameMove(player2)
+            gameMove(player2, player1)
         } else {
             player1.turn = true;
             player2.turn = false;
-            gameMove(player1)
+            gameMove(player1, player2)
         }
     }
 
