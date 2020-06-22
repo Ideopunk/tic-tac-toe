@@ -100,10 +100,12 @@ const gameflow = (function(player1, player2, gameboard){
         gameend()
     }
 
-    function winner(player) {
+    function winner(player, num) {
         messageBox.textContent = player.name + " wins!"
         console.log(messageBox.parentNode)
         player.score++;
+        let score = document.querySelectorAll('.score')
+        score[num].textContent = player.score;
         gameend();
     }
 
@@ -128,10 +130,10 @@ const gameflow = (function(player1, player2, gameboard){
             // if they're all filled and all the same, game is over
             if (check[0] !== undefined && check[0] === check[1] && check[0] === check[2]) {
                 if (player1.turn === true) {
-                    winner(player1)
+                    winner(player1, 0)
                     console.log('winner player 1')
                 } else {
-                    winner(player2)
+                    winner(player2, 1)
                     console.log('winner player 2')
                 }
             }

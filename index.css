@@ -57,6 +57,10 @@ p {
     border-left-color: grey;
 }
 
+.score {
+    display: table-row;
+}
+
 #messageBox {
     position: absolute;
     bottom: 5px;
