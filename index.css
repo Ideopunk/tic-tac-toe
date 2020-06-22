@@ -33,9 +33,14 @@ p {
     background-color: aqua;
 }
 
+.cellcontent {
+    font-size: 50px;
+    height: 10%;
+}
+
 .top {
     border-bottom-width: 2px;
-    border-bottom-style: solid;;
+    border-bottom-style: solid;
     border-bottom-color: grey;
 }
 
@@ -45,17 +50,18 @@ p {
     border-top-color: grey;
 }
 
-.left {
+.left, .mid {
     border-right-width: 2px;
     border-right-style: solid;
     border-right-color: grey;
 }
 
-.right {
+.right, .mid {
     border-left-width: 2px;
     border-left-style: solid;
     border-left-color: grey;
 }
+
 
 .score {
     display: table-row;
@@ -78,4 +84,8 @@ p {
     background-color: aqua;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
+}
+
+input {
+    font-size: 15px;
 }

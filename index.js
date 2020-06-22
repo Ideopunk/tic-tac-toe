@@ -1,4 +1,4 @@
-// module gameboard
+// gameboard
 let gameboard = []
 let positions = ['tl', 'tm', 'tr', 'cl', 'cm', 'cr', 'bl', 'bm', 'br']
 
@@ -74,6 +74,12 @@ const gameflow = (function(player1, player2, gameboard){
         rights.forEach(x => {
             x.style['border-left-color'] = 'black';
         })
+        
+        let mids = document.querySelectorAll('.mid')
+        mids.forEach(x => {
+            x.style['border-left-color'] = 'black';
+            x.style['border-right-color'] = 'black';
+        })
 
         // lock in names
         let firstname = document.querySelector('#firstname')
@@ -97,7 +103,7 @@ const gameflow = (function(player1, player2, gameboard){
         for (let i = 0; i < gameboard.length; i++) {
             gameboard[i].value = ''
             let cell = document.querySelector(`#${gameboard[i].id}`)
-            cell.textContent = ''
+            cell.textContent = ' '
         }
     }
 
@@ -111,7 +117,7 @@ const gameflow = (function(player1, player2, gameboard){
     }
 
     function winner(player, num) {
-        messageBox.textContent = player.name + " wins!"
+        alert(player.name + " wins!")
         console.log(messageBox.parentNode)
         player.score++;
         let score = document.querySelectorAll('.score')
@@ -159,7 +165,7 @@ const gameflow = (function(player1, player2, gameboard){
         let cell = event.path[0]
         
         // don't fill in cells already filled in
-        if (cell.textContent !== '') {
+        if (cell.textContent !== ' ') {
             return;
         }
 
