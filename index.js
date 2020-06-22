@@ -25,15 +25,44 @@ const player2 = playerFactory('Bob', 'O')
 
 // all the things that happen in the game
 const gameflow = (function(player1, player2, gameboard){
-    
+    const messageBox = document.querySelectorAll('#messageBox')
+
+    function setName(name, player) {
+        if (name.value !== '') {
+            player.name = name.value;
+        }
+        let parent = name.parentNode;
+        parent.removeChild(parent.childNodes[0])
+        parent.textContent = player.name;
+    }
 
     // Initialize game. 
     const gamestart = () => {
         let bottoms = document.querySelectorAll('.bottom')
-        bottoms.forEach(bottom => {
-            console.log(bottom)
-            bottom.setAttribute("border-top-color", "black");
+        bottoms.forEach(x => {
+            x.style["border-top-color"] = 'black';
         })
+        
+        let tops = document.querySelectorAll('.top')
+        tops.forEach(x => {
+            x.style["border-bottom-color"] = 'black';
+        })
+
+        let lefts = document.querySelectorAll('.left')
+        lefts.forEach(x => {
+            x.style["border-right-color"] = 'black';
+        })
+
+        let rights = document.querySelectorAll('.right')
+        rights.forEach(x => {
+            x.style['border-left-color'] = 'black';
+        })
+
+        // lock in names
+        let firstname = document.querySelector('#firstname')
+        let secondname = document.querySelector('#secondname')
+        setName(firstname, player1)
+        setName(secondname, player2)
 
 
         let x = Math.random();
