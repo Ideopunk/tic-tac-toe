@@ -17,9 +17,6 @@ const playerFactory = (name, symb) => {
     return { name, score, turn, symb };
 };
 
-// const player1 = playerFactory(prompt("First player name?"), 'X')
-// const player2 = playerFactory(prompt("Second player name?"), 'O')
-
 const player1 = playerFactory('Alice', 'X')
 const player2 = playerFactory('Bob', 'O')
 
@@ -99,7 +96,6 @@ const gameflow = (function(player1, player2, gameboard){
 
     // game is over, wipe the board
     const gameend = () => {
-        console.log('gameend')
         for (let i = 0; i < gameboard.length; i++) {
             gameboard[i].value = ''
             let cell = document.querySelector(`#${gameboard[i].id}`)
@@ -118,7 +114,6 @@ const gameflow = (function(player1, player2, gameboard){
 
     function winner(player, num) {
         alert(player.name + " wins!")
-        console.log(messageBox.parentNode)
         player.score++;
         let score = document.querySelectorAll('.score')
         score[num].textContent = "Score: " + player.score;
@@ -147,10 +142,8 @@ const gameflow = (function(player1, player2, gameboard){
             if (check[0] !== undefined && check[0] === check[1] && check[0] === check[2]) {
                 if (player1.turn === true) {
                     winner(player1, 0)
-                    console.log('winner player 1')
                 } else {
                     winner(player2, 1)
-                    console.log('winner player 2')
                 }
             }
         }
@@ -203,7 +196,6 @@ const gameflow = (function(player1, player2, gameboard){
 
     // turn control over to other player
     const newTurn = () => {
-        // linecheck()
         if (player1.turn === true) {
             player1.turn = false;
             player2.turn = true;
@@ -220,7 +212,7 @@ const gameflow = (function(player1, player2, gameboard){
         linecheck();
         newTurn(player1, player2, gameboard);
     }
-    return {gamestart, player1, player2}
+    return {gamestart}
 })(player1, player2, gameboard);
 
 // start button
