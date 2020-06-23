@@ -34,8 +34,8 @@ p {
 }
 
 .cellcontent {
-    font-size: 50px;
-    height: 10%;
+    font-size: 60px;
+    line-height: 0px;
 }
 
 .top {
@@ -44,13 +44,13 @@ p {
     border-bottom-color: grey;
 }
 
-.bottom {
+.bottom, .center {
     border-top-width: 2px;
     border-top-style: solid;
     border-top-color: grey;
 }
 
-.left, .mid {
+.left {
     border-right-width: 2px;
     border-right-style: solid;
     border-right-color: grey;
@@ -62,6 +62,14 @@ p {
     border-left-color: grey;
 }
 
+/* .mid {
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: grey;
+    border-right-width: 0px;
+    border-right-style: solid;
+    border-right-color: grey;
+} */
 
 .score {
     display: table-row;
@@ -69,15 +77,14 @@ p {
 }
 
 #bottombuttons {
-    display: flex;
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-    justify-items: stretch;
 }
 
 #messageBox {
     left: 40%;
     font-size: 20px;
+    justify-self: center;
 }
 
 #startbutton {
@@ -86,8 +93,9 @@ p {
     background-color: aqua;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
+    justify-self: center;
 }
 
 input {
-    font-size: 15px;
+    font-size: 20px;
 }
