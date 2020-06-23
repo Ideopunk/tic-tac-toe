@@ -44,7 +44,7 @@ p {
     border-bottom-color: grey;
 }
 
-.bottom, .center {
+.bottom {
     border-top-width: 2px;
     border-top-style: solid;
     border-top-color: grey;
